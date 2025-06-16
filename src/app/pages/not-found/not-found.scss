@@ -1,0 +1,35 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .text {
+    text-align: center;
+  }
+
+  .notFoundBtn {
+    width: 100px;
+    height: 40px;
+
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: transparent;
+    padding: 5px;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      color: #DCEAF3;
+      background-color: #1436CA;
+    }
+
+    &:active {
+      background-color: rgba(20, 54, 202, 0.7);
+    }
+  }
+}
