@@ -7,9 +7,9 @@ import { TreeNode } from '../../../shared/models/tree-model';
   providedIn: 'root'
 })
 export class TreeService {
-  private data = TreeNodes;
+  private data: TreeNode[] = TreeNodes;
 
   getTreeNodes(): Observable<TreeNode[]> {
-    return of(this.data);
+    return of<TreeNode[]>(this.data);
   }
 }
