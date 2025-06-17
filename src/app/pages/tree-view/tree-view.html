@@ -1,33 +1,37 @@
 <div class="tree-container">
-  <div class="tree">
-    <h2>Первое дерево</h2>
-    <app-tree
-      [nodes]="treeNodes()"
-      [nodeTemplate]="firstTreeTemplate"
-    />
-  </div>
+	<div class="tree">
+		<h2>Первое дерево</h2>
+		<app-tree
+			[idLogging]="true"
+			[nodes]="treeNodes()"
+			[nodeTemplate]="firstTreeTemplate"
+		/>
+	</div>
 
-  <div class="tree">
-    <h2>Второе дерево</h2>
-    <app-tree
-      [nodes]="treeNodes()"
-      [nodeTemplate]="secondTreeTemplate"
-    />
-  </div>
+	<div class="tree">
+		<h2>Второе дерево</h2>
+		<app-tree
+			[expandListAll]="true"
+			[nodes]="treeNodes()"
+			[nodeTemplate]="secondTreeTemplate"
+		/>
+	</div>
 </div>
 
 
-<!--Для 1 дерева-->
+<!--Первое дерево-->
 <ng-template #firstTreeTemplate let-node>
-  ID: {{ node.id }}, Title: {{ node.title }}
-  <button (click)="logNodeId(node.id)">Вывод ID в log</button>
+  <span>
+	  ID: {{ node.id }}, Title: {{ node.title }}
+  </span>
 </ng-template>
 
-<!--Для 2 дерева-->
+<!--Второе дерево-->
 <ng-template #secondTreeTemplate let-node>
-  Title: {{ node.title }}
-  @if (node.children.length > 0) {
-    Children: {{ node.children.length }}
-    <button (click)="treeStateService.expandAll(node)">Развернуть все</button>
-  }
+	<span>
+		Title: {{ node.title }}
+		@if (node.children.length) {
+			Children: {{ node.children.length }}
+		}
+	</span>
 </ng-template>

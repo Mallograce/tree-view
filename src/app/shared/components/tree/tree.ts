@@ -10,11 +10,18 @@ import { TreeStateService } from './services/tree-state-service';
   ],
   templateUrl: './tree.html',
   styleUrl: './tree.scss',
+  providers: [TreeStateService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Tree {
-  protected treeStateService = inject(TreeStateService);
+  protected treeStateService = inject(TreeStateService, { self: true });
 
-  public nodes = input<TreeNode[]>();
-  public nodeTemplate = input<TemplateRef<any>>();
+  public readonly nodes = input.required<TreeNode[]>();
+  public readonly nodeTemplate = input.required<TemplateRef<any>>();
+  public readonly idLogging = input<boolean>(false);
+  public readonly expandListAll = input<boolean>(false);
+
+  public logNodeId(id: number) {
+    console.info(`Нажали на узел ID <${id}>`);
+  }
 }

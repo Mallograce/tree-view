@@ -1,26 +1,39 @@
 <ul>
   @for (node of nodes(); track node.id) {
-    <li [class.deleted]="node.is_deleted">
-      <ng-container
-        [ngTemplateOutlet]="nodeTemplate()"
-        [ngTemplateOutletContext]="{ $implicit: node }"
-      />
-      @if (node.children.length > 0) {
-        <button (click)="treeStateService.toggleState(node.id)">
-          @if (treeStateService.getState(node.id)?.expanded()) {
-            <span>▲</span>
-          } @else {
-            <span>▼</span>
-          }
-        </button>
-      }
+    <li
+	    class="li-item"
+	    [class.deleted]="node.is_deleted">
+      <div class="li-item-content">
+	      @if (node.children.length) {
+		      <button
+			      class="arrow-btn"
+			      [class.open]="treeStateService.getState(node.id)?.expanded()"
+			      (click)="treeStateService.toggleState(node.id)">
+		      </button>
+	      }
 
-      @if (node.children.length > 0 && treeStateService.getState(node.id).expanded()) {
-        <app-tree
-          [nodes]="node.children"
-          [nodeTemplate]="nodeTemplate()"
-        ></app-tree>
-      }
+	      <ng-container
+		      [ngTemplateOutlet]="nodeTemplate()"
+		      [ngTemplateOutletContext]="{ $implicit: node }"
+	      />
+
+	      @if (idLogging()) {
+		      <button (click)="logNodeId(node.id)">Вывод ID в log</button>
+	      }
+
+	      @if (expandListAll()) {
+		      <button (click)="treeStateService.expandAll(node)">Развернуть все</button>
+	      }
+      </div>
+
+	    <div class="li-content">
+		    @if (node.children.length > 0 && treeStateService.getState(node.id).expanded()) {
+			    <app-tree
+				    [nodes]="node.children"
+				    [nodeTemplate]="nodeTemplate()"
+			    ></app-tree>
+		    }
+	    </div>
     </li>
   }
 </ul>
