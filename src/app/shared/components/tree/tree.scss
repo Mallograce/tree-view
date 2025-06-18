@@ -23,12 +23,6 @@
       background: none;
       cursor: pointer;
 
-      /*&:hover {
-        &::after {
-          color: #1436CA;
-        }
-      }*/
-
       &::after {
         content: '';
         position: absolute;
@@ -37,11 +31,27 @@
         height: 100%;
         background: url('../../../assets/svg/list-arrow.svg');
         transform: rotate(-90deg);
-        transition: transform .25s ease;
+        transition: transform .35s ease;
       }
 
       &.open::after {
         transform: rotate(0deg);
+      }
+    }
+
+    .special-btn {
+      border: 1px solid #1436CA;
+      border-radius: 4px;
+      color: #1436CA;
+      background-color: transparent;
+      padding: 2px;
+
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        color: #DCEAF3;
+        background-color: #1436CA;
       }
     }
   }

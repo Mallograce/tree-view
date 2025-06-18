@@ -7,8 +7,8 @@
 	      @if (node.children.length) {
 		      <button
 			      class="arrow-btn"
-			      [class.open]="treeStateService.getState(node.id)?.expanded()"
-			      (click)="treeStateService.toggleState(node.id)">
+			      [class.open]="getExpanded(node.id)"
+			      (click)="toggleState(node.id)">
 		      </button>
 	      }
 
@@ -18,17 +18,22 @@
 	      />
 
 	      @if (idLogging()) {
-		      <button (click)="logNodeId(node.id)">Вывод ID в log</button>
+		      <button
+            class="special-btn"
+            (click)="logNodeId(node.id)">Вывод ID в log</button>
 	      }
 
 	      @if (expandListAll()) {
-		      <button (click)="treeStateService.expandAll(node)">Развернуть все</button>
+		      <button
+            class="special-btn"
+            (click)="expandAll(node)">Развернуть все</button>
 	      }
       </div>
 
 	    <div class="li-content">
-		    @if (node.children.length > 0 && treeStateService.getState(node.id).expanded()) {
+		    @if (node.children.length > 0 && getExpanded(node.id)) {
 			    <app-tree
+            [idLogging]="idLogging()"
 				    [nodes]="node.children"
 				    [nodeTemplate]="nodeTemplate()"
 			    ></app-tree>

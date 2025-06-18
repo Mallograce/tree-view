@@ -22,16 +22,16 @@
 <!--Первое дерево-->
 <ng-template #firstTreeTemplate let-node>
   <span>
-	  ID: {{ node.id }}, Title: {{ node.title }}
+	  <b>ID:</b> {{ node.id }}, <b>Title:</b> {{ node.title }}
   </span>
 </ng-template>
 
 <!--Второе дерево-->
 <ng-template #secondTreeTemplate let-node>
 	<span>
-		Title: {{ node.title }}
+		<b>Title: </b>{{ node.title }}
 		@if (node.children.length) {
-			Children: {{ node.children.length }}
+      <b>Children:</b> {{ node.children.length }}
 		}
 	</span>
 </ng-template>
